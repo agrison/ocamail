@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="next" href="Ocamail.Smtp.Response.html">
+<link rel="Up" href="Ocamail.Smtp.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ocamail" rel="Chapter" href="Ocamail.html"><title>Ocamail.Smtp.Request</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a href="Ocamail.Smtp.html">Up</a>
+&nbsp;<a href="Ocamail.Smtp.Response.html">Next</a>
+</div>
+<center><h1>Module <a href="type_Ocamail.Smtp.Request.html">Ocamail.Smtp.Request</a></h1></center>
+<br>
+<pre><span class="keyword">module</span> Request: <code class="code"><span class="keyword">sig</span></code> <a href="Ocamail.Smtp.Request.html">..</a> <code class="code"><span class="keyword">end</span></code></pre>SMTP Client Request Module<br>
+<hr width="100%">
+<br><code><span class="keyword">type</span> <a name="TYPErequest"></a><code class="type"></code>request = </code><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Helo</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Mail</span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Rcpt</span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Data</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Line</span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">EndOfData</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Quit</span></code></td>
+
+</tr></table>
+
+<div class="info">
+SMTP Client request<br>
+</div>
+
+<pre><span class="keyword">val</span> <a name="VALfrom_string"></a><a href="code_VALOcamail.Smtp.Request.from_string.html">from_string</a> : <code class="type">string -> <a href="Ocamail.Smtp.Request.html#TYPErequest">request</a></code></pre><div class="info">
+Read a line and extract the command from it<br>
+</div>
+</body></html>

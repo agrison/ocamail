@@ -1,0 +1,21 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ocamail" rel="Chapter" href="Ocamail.html"><title>Ocamail.save_as_file</title>
+</head>
+<body>
+<code class="code"><span class="keyword">let</span>&nbsp;save_as_file&nbsp;str&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;now&nbsp;=&nbsp;<span class="constructor">Unix</span>.localtime&nbsp;(<span class="constructor">Unix</span>.time())&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;{&nbsp;<span class="constructor">Unix</span>.tm_year&nbsp;=&nbsp;y;&nbsp;<span class="constructor">Unix</span>.tm_mon&nbsp;=&nbsp;m;&nbsp;<span class="constructor">Unix</span>.tm_mday&nbsp;=&nbsp;d;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Unix</span>.tm_hour&nbsp;=&nbsp;h;&nbsp;<span class="constructor">Unix</span>.tm_min&nbsp;=&nbsp;mm;&nbsp;<span class="constructor">Unix</span>.tm_sec&nbsp;=&nbsp;s&nbsp;}&nbsp;=&nbsp;now&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;name&nbsp;=&nbsp;<span class="constructor">Printf</span>.sprintf&nbsp;<span class="string">"mail-%4d%02d%02d-%02d%02d%02d.txt"</span>&nbsp;(y&nbsp;+&nbsp;1900)&nbsp;m&nbsp;d&nbsp;h&nbsp;mm&nbsp;s&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;headers&nbsp;=&nbsp;<span class="constructor">Data</span>.get_headers&nbsp;str&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;channel&nbsp;=&nbsp;open_out&nbsp;name&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output_string&nbsp;channel&nbsp;str;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;close_out&nbsp;channel;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;debug&nbsp;(<span class="string">"saved&nbsp;something&nbsp;into&nbsp;"</span>&nbsp;^&nbsp;name);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parse_transcript&nbsp;headers&nbsp;str</code></body></html>

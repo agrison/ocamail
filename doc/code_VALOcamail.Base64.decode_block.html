@@ -1,0 +1,19 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ocamail" rel="Chapter" href="Ocamail.html"><title>Ocamail.Base64.decode_block</title>
+</head>
+<body>
+<code class="code"><span class="keyword">let</span>&nbsp;decode_block&nbsp;s&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;code&nbsp;s&nbsp;i&nbsp;=&nbsp;<span class="constructor">Char</span>.code&nbsp;(internal_char&nbsp;(<span class="constructor">String</span>.get&nbsp;s&nbsp;i))&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;(in[0]&nbsp;&lt;&lt;&nbsp;2&nbsp;|&nbsp;in[1]&nbsp;&gt;&gt;&nbsp;4)&nbsp;*)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;i0&nbsp;=&nbsp;<span class="constructor">StrUtils</span>.safe_char&nbsp;(((code&nbsp;s&nbsp;0)&nbsp;<span class="keyword">lsl</span>&nbsp;2)&nbsp;<span class="keyword">lor</span>&nbsp;((code&nbsp;s&nbsp;1)&nbsp;<span class="keyword">lsr</span>&nbsp;4))&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;(in[1]&nbsp;&lt;&lt;&nbsp;4&nbsp;|&nbsp;in[2]&nbsp;&gt;&gt;&nbsp;2)&nbsp;*)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;i1&nbsp;=&nbsp;<span class="constructor">StrUtils</span>.safe_char&nbsp;(((code&nbsp;s&nbsp;1)&nbsp;<span class="keyword">lsl</span>&nbsp;4)&nbsp;<span class="keyword">lor</span>&nbsp;((code&nbsp;s&nbsp;2)&nbsp;<span class="keyword">lsr</span>&nbsp;2))&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;(((in[2]&nbsp;&lt;&lt;&nbsp;6)&nbsp;&amp;&nbsp;0xc0)&nbsp;|&nbsp;in[3])&nbsp;*)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;i2&nbsp;=&nbsp;<span class="constructor">StrUtils</span>.safe_char&nbsp;((((code&nbsp;s&nbsp;2)&nbsp;<span class="keyword">lsl</span>&nbsp;6)&nbsp;<span class="keyword">land</span>&nbsp;0xc0)&nbsp;<span class="keyword">lor</span>&nbsp;(code&nbsp;s&nbsp;3))&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i0&nbsp;^&nbsp;i1&nbsp;^&nbsp;i2</code></body></html>

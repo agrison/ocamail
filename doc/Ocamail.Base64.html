@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Ocamail.StrUtils.html">
+<link rel="next" href="Ocamail.Smtp.html">
+<link rel="Up" href="Ocamail.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ocamail" rel="Chapter" href="Ocamail.html"><title>Ocamail.Base64</title>
+</head>
+<body>
+<div class="navbar"><a href="Ocamail.StrUtils.html">Previous</a>
+&nbsp;<a href="Ocamail.html">Up</a>
+&nbsp;<a href="Ocamail.Smtp.html">Next</a>
+</div>
+<center><h1>Module <a href="type_Ocamail.Base64.html">Ocamail.Base64</a></h1></center>
+<br>
+<pre><span class="keyword">module</span> Base64: <code class="code"><span class="keyword">sig</span></code> <a href="Ocamail.Base64.html">..</a> <code class="code"><span class="keyword">end</span></code></pre>Base 64 module supporting base64 string decoding<br>
+<hr width="100%">
+<pre><span class="keyword">val</span> <a name="VALcd64"></a><a href="code_VALOcamail.Base64.cd64.html">cd64</a> : <code class="type">string</code></pre><div class="info">
+Translation Table to decode (see: http://base64.sourceforge.net/b64.c)<br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALsafe_char"></a><a href="code_VALOcamail.Base64.safe_char.html">safe_char</a> : <code class="type">int -> char</code></pre><div class="info">
+Return a character (safely), like C-unsigned char<br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALinternal_char"></a><a href="code_VALOcamail.Base64.internal_char.html">internal_char</a> : <code class="type">char -> char</code></pre><div class="info">
+Translate the given character using the internal translation table<br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALdecode_block"></a><a href="code_VALOcamail.Base64.decode_block.html">decode_block</a> : <code class="type">string -> string</code></pre><div class="info">
+decode 4 '6-bit' characters into 3 8-bit binary bytes<br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALdecode_string"></a><a href="code_VALOcamail.Base64.decode_string.html">decode_string</a> : <code class="type">string -> string list</code></pre><div class="info">
+decode a base64 encoded stream discarding padding, line breaks and noise.
+      <code class="code">decode_string <span class="string">"SGVsbG8gd29ybGQh"</span> == <span class="string">"Hello world!"</span></code><br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALsave_b64_bin"></a><a href="code_VALOcamail.Base64.save_b64_bin.html">save_b64_bin</a> : <code class="type">string -> string -> unit</code></pre><div class="info">
+save the given base64 representing bin data to the given filename<br>
+</div>
+</body></html>

@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="next" href="Ocamail.Base64.html">
+<link rel="Up" href="Ocamail.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ocamail" rel="Chapter" href="Ocamail.html"><title>Ocamail.StrUtils</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a href="Ocamail.html">Up</a>
+&nbsp;<a href="Ocamail.Base64.html">Next</a>
+</div>
+<center><h1>Module <a href="type_Ocamail.StrUtils.html">Ocamail.StrUtils</a></h1></center>
+<br>
+<pre><span class="keyword">module</span> StrUtils: <code class="code"><span class="keyword">sig</span></code> <a href="Ocamail.StrUtils.html">..</a> <code class="code"><span class="keyword">end</span></code></pre>Some String utilities<br>
+<hr width="100%">
+<pre><span class="keyword">val</span> <a name="VALlines_of"></a><a href="code_VALOcamail.StrUtils.lines_of.html">lines_of</a> : <code class="type">string -> string list</code></pre><div class="info">
+Returns a list containing each line in the given string<br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALheader_parts"></a><a href="code_VALOcamail.StrUtils.header_parts.html">header_parts</a> : <code class="type">string -> string * string</code></pre><div class="info">
+Return a tuple where <code class="code">fst</code> is the key and <code class="code">snd</code> is the value in a
+     string expression like <code class="code"><span class="string">"key: value"</span></code><br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALtrim"></a><a href="code_VALOcamail.StrUtils.trim.html">trim</a> : <code class="type">string -> string</code></pre><div class="info">
+trim a string by removing <code class="code"><span class="string">"^[ \t\r\n]+"</span></code> and <code class="code"><span class="string">"[ \t\r\n]+$"</span></code> from it.
+      Example <code class="code">trim <span class="string">"\thello\t \tworld !  \t"</span> == <span class="string">"hello\t \tworld !"</span></code><br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALafter_colon"></a><a href="code_VALOcamail.StrUtils.after_colon.html">after_colon</a> : <code class="type">string -> string</code></pre><div class="info">
+Returns what is after a colon, in the given line<br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALsafe_char"></a><a href="code_VALOcamail.StrUtils.safe_char.html">safe_char</a> : <code class="type">int -> string</code></pre><div class="info">
+Get the String representation of a char code, even if it exceeds
+     unsigned char limits. Works as C unsigned char casting.<br>
+</div>
+</body></html>

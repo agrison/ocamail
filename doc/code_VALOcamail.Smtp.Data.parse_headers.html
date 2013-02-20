@@ -1,0 +1,20 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ocamail" rel="Chapter" href="Ocamail.html"><title>Ocamail.Smtp.Data.parse_headers</title>
+</head>
+<body>
+<code class="code"><span class="keyword">let</span>&nbsp;parse_headers&nbsp;headers&nbsp;htbl&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;keep_until_nl&nbsp;l&nbsp;=&nbsp;<span class="comment">(*&nbsp;keep&nbsp;items&nbsp;only&nbsp;before&nbsp;new&nbsp;empty&nbsp;line&nbsp;*)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;<span class="keyword">rec</span>&nbsp;internal&nbsp;l&nbsp;accu&nbsp;=&nbsp;<span class="keyword">match</span>&nbsp;l&nbsp;<span class="keyword">with</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;h::t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keyword">if</span>&nbsp;<span class="constructor">StrUtils</span>.trim(h)&nbsp;=&nbsp;<span class="string">""</span>&nbsp;<span class="keyword">then</span>&nbsp;accu&nbsp;<span class="keyword">else</span>&nbsp;h::(internal&nbsp;t&nbsp;accu)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;[]&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;accu<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">in</span>&nbsp;internal&nbsp;l&nbsp;[]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;lines&nbsp;=&nbsp;keep_until_nl&nbsp;(<span class="constructor">StrUtils</span>.lines_of&nbsp;headers)&nbsp;<span class="keyword">in</span>&nbsp;<span class="comment">(*&nbsp;get&nbsp;lines&nbsp;*)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">List</span>.iter&nbsp;(<span class="keyword">fun</span>&nbsp;e&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keyword">let</span>&nbsp;p&nbsp;=&nbsp;<span class="constructor">StrUtils</span>.header_parts&nbsp;e&nbsp;<span class="keyword">in</span>&nbsp;<span class="constructor">Hashtbl</span>.add&nbsp;htbl&nbsp;(fst&nbsp;p)&nbsp;(snd&nbsp;p))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(keep_until_nl&nbsp;lines)</code></body></html>

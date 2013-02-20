@@ -1,0 +1,16 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ocamail" rel="Chapter" href="Ocamail.html"><title>Ocamail.ocamail</title>
+</head>
+<body>
+<code class="code"><span class="keyword">let</span>&nbsp;<span class="keyword">rec</span>&nbsp;ocamail&nbsp;()&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;<span class="keyword">try</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Unix</span>.handle_unix_error&nbsp;main_server&nbsp;smtp_service<br>
+&nbsp;&nbsp;&nbsp;<span class="keyword">with</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Sys_error</span>&nbsp;x&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;debug&nbsp;(<span class="string">"Failed&nbsp;with&nbsp;Sys_error:&nbsp;"</span>&nbsp;^&nbsp;x);&nbsp;ocamail()&nbsp;<span class="comment">(*&nbsp;try&nbsp;a&nbsp;restart&nbsp;*)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;_&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;debug&nbsp;<span class="string">"OCaMail&nbsp;stopping.&nbsp;See&nbsp;ya&nbsp;!"</span>;&nbsp;exit&nbsp;0</code></body></html>

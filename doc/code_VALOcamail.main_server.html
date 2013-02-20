@@ -1,0 +1,32 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ocamail" rel="Chapter" href="Ocamail.html"><title>Ocamail.main_server</title>
+</head>
+<body>
+<code class="code"><span class="keyword">let</span>&nbsp;main_server&nbsp;server_fun&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;host&nbsp;=&nbsp;<span class="constructor">Unix</span>.inet_addr_of_string&nbsp;<span class="string">"0.0.0.0"</span>&nbsp;<span class="keyword">in</span>&nbsp;<span class="comment">(*&nbsp;localhost&nbsp;*)</span><br>
+&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;addr&nbsp;=&nbsp;<span class="constructor">Unix</span>.<span class="constructor">ADDR_INET</span>&nbsp;(host,&nbsp;25)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;sock&nbsp;=&nbsp;<span class="constructor">Unix</span>.socket&nbsp;<span class="constructor">Unix</span>.<span class="constructor">PF_INET</span>&nbsp;<span class="constructor">Unix</span>.<span class="constructor">SOCK_STREAM</span>&nbsp;0&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;_&nbsp;=&nbsp;<span class="constructor">Unix</span>.setsockopt&nbsp;sock&nbsp;<span class="constructor">Unix</span>.<span class="constructor">SO_REUSEADDR</span>&nbsp;<span class="keyword">true</span>&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;<span class="keyword">try</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Unix</span>.bind&nbsp;sock&nbsp;addr&nbsp;;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Unix</span>.listen&nbsp;sock&nbsp;3;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;debug&nbsp;<span class="string">"Binding&nbsp;on&nbsp;0.0.0.0:25."</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">while</span>&nbsp;<span class="keyword">true</span>&nbsp;<span class="keyword">do</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;debug&nbsp;<span class="string">"Waiting&nbsp;for&nbsp;client."</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;(s,&nbsp;caller)&nbsp;=&nbsp;<span class="constructor">Unix</span>.accept&nbsp;sock<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">in</span>&nbsp;(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;inchan&nbsp;=&nbsp;<span class="constructor">Unix</span>.in_channel_of_descr&nbsp;s<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">and</span>&nbsp;outchan&nbsp;=&nbsp;<span class="constructor">Unix</span>.out_channel_of_descr&nbsp;s<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">in</span>&nbsp;server_fun&nbsp;inchan&nbsp;outchan&nbsp;s;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;close_in&nbsp;inchan;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">try</span>&nbsp;close_out&nbsp;outchan&nbsp;<span class="keyword">with</span>&nbsp;_&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;();&nbsp;<span class="comment">(*&nbsp;dont&nbsp;care&nbsp;*)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;debug&nbsp;<span class="string">"Finished&nbsp;with&nbsp;client."</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">done</span><br>
+&nbsp;&nbsp;&nbsp;<span class="keyword">with</span>&nbsp;_&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Unix</span>.close&nbsp;sock</code></body></html>

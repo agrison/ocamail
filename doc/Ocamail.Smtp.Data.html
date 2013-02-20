@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Ocamail.Smtp.Response.html">
+<link rel="Up" href="Ocamail.Smtp.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ocamail" rel="Chapter" href="Ocamail.html"><title>Ocamail.Smtp.Data</title>
+</head>
+<body>
+<div class="navbar"><a href="Ocamail.Smtp.Response.html">Previous</a>
+&nbsp;<a href="Ocamail.Smtp.html">Up</a>
+&nbsp;</div>
+<center><h1>Module <a href="type_Ocamail.Smtp.Data.html">Ocamail.Smtp.Data</a></h1></center>
+<br>
+<pre><span class="keyword">module</span> Data: <code class="code"><span class="keyword">sig</span></code> <a href="Ocamail.Smtp.Data.html">..</a> <code class="code"><span class="keyword">end</span></code></pre>Data parsing module<br>
+<hr width="100%">
+<pre><span class="keyword">val</span> <a name="VALparse_headers"></a><a href="code_VALOcamail.Smtp.Data.parse_headers.html">parse_headers</a> : <code class="type">string -> (string, string) Hashtbl.t -> unit</code></pre><div class="info">
+Parse the headers and put the key,value found in the given <code class="code"><span class="constructor">Hashtbl</span></code><br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALget_headers"></a><a href="code_VALOcamail.Smtp.Data.get_headers.html">get_headers</a> : <code class="type">string -> (string, string) Hashtbl.t</code></pre><div class="info">
+Get the headers from the given content string <code class="code">content</code><br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALis_multipart"></a><a href="code_VALOcamail.Smtp.Data.is_multipart.html">is_multipart</a> : <code class="type">string -> bool</code></pre><div class="info">
+Check if the line <code class="code">s</code> indicate a multipart/mixed content<br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALget_boundary"></a><a href="code_VALOcamail.Smtp.Data.get_boundary.html">get_boundary</a> : <code class="type">string -> string</code></pre><div class="info">
+Get the boundary from the multipart line <code class="code">s</code><br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALget_content_for_boundary"></a><a href="code_VALOcamail.Smtp.Data.get_content_for_boundary.html">get_content_for_boundary</a> : <code class="type">string -> string -> string</code></pre><div class="info">
+Extract the data for the given boundary <code class="code">b</code> from the given content <code class="code">s</code><br>
+</div>
+<pre><span class="keyword">val</span> <a name="VALget_content_filename"></a><a href="code_VALOcamail.Smtp.Data.get_content_filename.html">get_content_filename</a> : <code class="type">(string, string) Hashtbl.t -> string</code></pre><div class="info">
+Get the content file name from the <code class="code"><span class="constructor">Content</span>-<span class="constructor">Disposition</span></code> header in
+         the given Hashtbl <code class="code">h</code><br>
+</div>
+</body></html>
