@@ -59,5 +59,18 @@ The code contains just three modules for:
     > quit
     Responding [221 CaMail - Simple Fake SMTP Server - Service closing transmission channel]
 
+##Compile and run
 
+Using ocamlfind and ocamlc
 
+    $ ocamlfind ocamlc -package unix -package str -linkpkg ocamail.ml -o ocamail
+	$ ./ocamail
+	OCaMail - Binding on 0.0.0.0:25.
+    OCaMail - Waiting for client.
+	
+Or directly using ocaml
+
+    $ ocaml ocamail.ml
+	OCaMail - Binding on 0.0.0.0:25.
+    OCaMail - Waiting for client.
+	
