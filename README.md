@@ -1,6 +1,6 @@
 # OCamail, simple SMTP Server written in OCaml
 
-**tldr:** Just because I can and I found the name amusing :-P.
+**tldr:** Just because I can and I found the name amusing :-P. See the webpage dedicated to it on my [website](http://grison.me).
 
 *OCamail* is a simple SMTP Server acknowledging all requests it receives. It is written in Objective Caml for development and learning purposes.
 
