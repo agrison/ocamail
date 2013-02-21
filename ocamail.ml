@@ -197,7 +197,7 @@ let main_server server_fun =
         );
         debug "Finished with client."
       done
-   with _ -> Unix.close sock
+   with e -> Unix.close sock; raise e
 ;;
 
 

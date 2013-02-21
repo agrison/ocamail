@@ -1,8 +1,8 @@
 # OCamail, simple SMTP Server written in OCaml
 
-**tldr:** Just because I can and I found the name amusing :-P. See the webpage dedicated to it on my [website](http://grison.me).
+**tldr:** Just because I can and I found the name amusing :-P. See the webpage dedicated to it on my [website](http://grison.me/ocamail).
 
-*OCamail* is a simple SMTP Server acknowledging all requests it receives. It is written in Objective Caml for development and learning purposes.
+*OCamail* is a simple SMTP Server acknowledging all requests it receives. It is written in [Objective Caml](http://caml.inria.fr/ocaml/index.fr.html) for development and learning purposes.
 
 Attachments (non-gziped only) are supported and can be saved in a directory in order to be checked if needed.
 
@@ -61,14 +61,20 @@ The code contains just three modules for:
 
 ##Compile and run
 
-Using ocamlfind and ocamlc
+Using `ocamlfind` and `ocamlc`
 
     $ ocamlfind ocamlc -package unix -package str -linkpkg ocamail.ml -o ocamail
 	$ ./ocamail
 	OCaMail - Binding on 0.0.0.0:25.
     OCaMail - Waiting for client.
 	
-Or directly using ocaml
+In case you don't have sufficient right to bind to `0.0.0.0` you might run the process with `sudo`
+
+	$ sudo ./ocamail
+	OCaMail - Binding on 0.0.0.0:25.
+    OCaMail - Waiting for client.
+	
+Or directly using `ocaml`
 
     $ ocaml ocamail.ml
 	OCaMail - Binding on 0.0.0.0:25.
